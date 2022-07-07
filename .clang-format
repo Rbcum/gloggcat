@@ -1,0 +1,32 @@
+Standard: Cpp11
+BasedOnStyle: WebKit
+IndentWidth: 4
+ColumnLimit: 100
+AccessModifierOffset: -4
+NamespaceIndentation: All
+AllowShortFunctionsOnASingleLine: false
+BreakBeforeBraces: Custom
+IndentCaseLabels: true
+IndentCaseBlocks: true
+BraceWrapping:
+  AfterEnum: true
+  AfterStruct: true
+  AfterClass: true
+  SplitEmptyFunction: true
+  AfterControlStatement: false
+  AfterNamespace: false
+  AfterFunction: true
+  AfterUnion: true
+  AfterExternBlock: false
+  AfterCaseLabel: true
+  BeforeCatch: false
+  BeforeElse: false
+  SplitEmptyRecord: true
+  SplitEmptyNamespace: true
+MacroBlockBegin: "^wxBEGIN_EVENT_TABLE$"
+MacroBlockEnd: "^wxEND_EVENT_TABLE$"
+StatementMacros: ['wxDEFINE_TIED_SCOPED_PTR_TYPE','wxDECLARE_EVENT','wxDEFINE_EVENT']
+AlwaysBreakBeforeMultilineStrings: false
+AlignAfterOpenBracket: DontAlign
+DerivePointerAlignment: false
+PointerAlignment: Right
