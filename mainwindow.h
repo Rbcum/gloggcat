@@ -31,5 +31,6 @@ private:
     QPersistentModelIndex currentIndex;
     QAction *addAction;
     QAction *removeAction;
+    QAction *autoOpenAction;
 };
 #endif // MAINWINDOW_H

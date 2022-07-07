@@ -3,6 +3,7 @@
 #include "cmdlistdelegate.h"
 #include "cmdlistmodel.h"
 #include <QScreen>
+#include <QSettings>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -12,10 +13,16 @@ MainWindow::MainWindow(QWidget *parent)
 
     addAction = new QAction(QIcon("://res/list-add.png"), "Add", this);
     removeAction = new QAction(QIcon(":/res/list-remove.png"), "Remove", this);
+    autoOpenAction = new QAction(QIcon(":/res/auto-open.svg"), "Auto open glogg", this);
+    autoOpenAction->setCheckable(true);
+    autoOpenAction->setChecked(QSettings().value("auto_open", true).toBool());
     ui->toolBar->addAction(addAction);
     ui->toolBar->addAction(removeAction);
+    ui->toolBar->addSeparator();
+    ui->toolBar->addAction(autoOpenAction);
     connect(addAction, &QAction::triggered, this, &MainWindow::onAction);
     connect(removeAction, &QAction::triggered, this, &MainWindow::onAction);
+    connect(autoOpenAction, &QAction::toggled, this, &MainWindow::onAction);
 
     CmdListModel *model = new CmdListModel(ui->listView);
     CmdListDelegate *delegate = new CmdListDelegate(ui->listView);
@@ -68,5 +75,7 @@ void MainWindow::onAction()
         ui->listView->model()->insertRow(currentIndex.row() + 1);
     } else if (action == removeAction) {
         ui->listView->model()->removeRow(currentIndex.row());
+    } else if (action == autoOpenAction) {
+        QSettings().setValue("auto_open", action->isChecked());
     }
 }

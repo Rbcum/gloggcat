@@ -3,6 +3,7 @@
 #include <QDir>
 #include <QMimeData>
 #include <QRegularExpression>
+#include <QSettings>
 #include <QSqlError>
 #include <QSqlQuery>
 
@@ -224,6 +225,13 @@ void CmdListModel::procStateChanged(QProcess::ProcessState state)
     }
     if (row == -1) {
         return;
+    }
+    if (state == QProcess::Running) {
+        if (QSettings().value("auto_open", true).toBool()) {
+            const QString &file = data(index(row), FileRole).toString();
+            QProcess process;
+            process.startDetached("glogg", { file });
+        }
     }
     emit dataChanged(index(row), index(row));
 }

@@ -1,4 +1,4 @@
 # gloggcat
-Double-click to open log file in the powerful glogg tool.
+One click to view log in the powerful glogg tool.
 
 <img src="website/Screenshot.png" width="420"/>
