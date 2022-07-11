@@ -34,7 +34,9 @@ void CmdListDelegate::paint(
     // Text
     QString text = index.data().toString();
     QRect textRect = rect.adjusted(MARGIN, MARGIN, -BTN_WIDTH - 3 * MARGIN, -MARGIN);
-    style->drawItemText(painter, textRect, Qt::AlignVCenter, opt.palette, true, text);
+    QPalette::ColorRole textRole
+        = opt.state & QStyle::State_Selected ? QPalette::HighlightedText : QPalette::Text;
+    style->drawItemText(painter, textRect, Qt::AlignVCenter, opt.palette, true, text, textRole);
 
     // Button
     QRect buttonRect(rect.right() - BTN_WIDTH - MARGIN,
